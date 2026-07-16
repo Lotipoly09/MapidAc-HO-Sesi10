@@ -1,5 +1,6 @@
 import { Map } from 'maplibre-gl';
 import naturalEarthdata from "./data/titik_populatedplaces.geojson?url";
+import arIndonesia from "./data/arIndo.geojson?url";
 
 const mapElement = document.createElement('div');
 mapElement.id = 'map';
@@ -64,19 +65,35 @@ const data2 = {
 
 
 map.on('load', () => {
-map.addSource('natural-earthdata', {
-    type: 'geojson',
-    data: naturalEarthdata,
-  });
+  map.addSource('natural-earthdata', {
+      type: 'geojson',
+      data: naturalEarthdata,
+    });
 
-map.addSource('indonesia-source', {
-    type: 'geojson',
-    data: data,
-  });
+  map.addSource('indonesia-source', {
+      type: 'geojson',
+      data: data,
+    });
 
-map.addSource('garis-ibukota-source', {
-    type: 'geojson',
-    data: data2,
+  map.addSource('arIndo', {
+      type: 'geojson',
+      data: arIndonesia,
+    });
+
+  map.addSource('garis-ibukota-source', {
+      type: 'geojson',
+      data: data2,
+    });
+
+  map.addSource("rasterMonas", {
+    type: "image",
+    url: "https://upload.wikimedia.org/wikipedia/commons/8/87/Monumen_Nasional_%28Monas_Jakarta%29.jpg",
+    coordinates: [
+      [120.813, 2.189],
+      [136.813, 2.189],
+      [136.813, -8.185],
+      [120.813, -8.189]
+    ]
   });
 
   map.addLayer({
@@ -85,7 +102,7 @@ map.addSource('garis-ibukota-source', {
     source: 'natural-earthdata',
     paint: {
       'circle-radius': 3,
-      'circle-color': '#ecf723',
+      'circle-color': '#edf73e',
       'circle-stroke-width': 1,
       'circle-stroke-color': '#000000',
     },
@@ -112,5 +129,22 @@ map.addSource('garis-ibukota-source', {
       'line-width': 2,
     },
   });
-} )
 
+  map.addLayer({
+    id: 'arIndo-layer',
+    type: 'fill',
+    source: 'arIndo',
+    paint: {
+      'fill-color': 'orange',
+      'fill-opacity': 0.4,
+      'fill-outline-color': 'red',
+    },
+  });
+
+  map.addLayer({
+    id: "rasterMonas-layer",
+    type: "raster",
+    source: "rasterMonas",
+  });
+
+})
