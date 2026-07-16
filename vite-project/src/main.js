@@ -1,4 +1,5 @@
 import { Map } from 'maplibre-gl';
+import naturalEarthdata from "./data/titik_populatedplaces.geojson?url";
 
 const mapElement = document.createElement('div');
 mapElement.id = 'map';
@@ -31,10 +32,63 @@ const data = {
   ]
 }
 
+const data2 = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "NAMOBJ": "Garis Ibukota Indonesia"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            106.8315391,
+            -6.1873012
+          ],
+          [
+            100.3747002,
+            -0.9275219
+          ],
+          [
+            116.6918698,
+            -0.9807282
+          ]
+        ]
+      }
+    }
+  ]
+}
+
+
+
 map.on('load', () => {
+map.addSource('natural-earthdata', {
+    type: 'geojson',
+    data: naturalEarthdata,
+  });
+
 map.addSource('indonesia-source', {
     type: 'geojson',
     data: data,
+  });
+
+map.addSource('garis-ibukota-source', {
+    type: 'geojson',
+    data: data2,
+  });
+
+  map.addLayer({
+    id: 'natural-earthdata-layer',
+    type: 'circle',
+    source: 'natural-earthdata',
+    paint: {
+      'circle-radius': 3,
+      'circle-color': '#ecf723',
+      'circle-stroke-width': 1,
+      'circle-stroke-color': '#000000',
+    },
   });
 
   map.addLayer({
@@ -48,6 +102,15 @@ map.addSource('indonesia-source', {
       'circle-stroke-color': '#000000',
     },
   });
+
+  map.addLayer({
+    id: 'garis-ibukota',
+    type: 'line',
+    source: 'garis-ibukota-source',
+    paint: {
+      'line-color': '#0000FF',
+      'line-width': 2,
+    },
+  });
 } )
-  
-  
+
