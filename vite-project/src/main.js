@@ -1,15 +1,15 @@
-import { Map, FullscreenControl, GlobeControl } from 'maplibre-gl';
+import { Map, FullscreenControl, GlobeControl, LogoControl, Popup } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { addtitikNE, addarIndo } from './layers/vector.js';
 import { addrasterMonas } from './layers/raster.js';
 import { addAttribution } from './controls/basicControls.js';
 import { LogoMonasControl } from './controls/logoCostume.js';
-
+import { addPopupNE } from './controls/popUp.js';
 
 const mapElement = document.createElement('div');
-mapElement.id = 'map';
-mapElement.style.height = '300px';
-document.body.appendChild(mapElement);
+  mapElement.id = 'map';
+  mapElement.style.height = '300px';
+  document.body.appendChild(mapElement);
 
 const map = new Map({
   container: 'map',
@@ -99,6 +99,10 @@ map.on('load', () => {
     },
   });
 
+  map.on('click', 'natural-earthdata-layer', function (e) {
+    addPopupNE(map, e);
+  });
+
   map.addLayer({
     id: 'garis-ibukota',
     type: 'line',
@@ -115,3 +119,4 @@ addAttribution(map);
 map.addControl(new FullscreenControl());
 map.addControl(new GlobeControl());
 map.addControl(new LogoMonasControl(), "top-left");
+addPopupNE(map);
