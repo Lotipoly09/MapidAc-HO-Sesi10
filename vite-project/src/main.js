@@ -1,4 +1,5 @@
-import { Map } from 'maplibre-gl';
+import { Map, FullscreenControl, GlobeControl } from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
 import { addtitikNE, addarIndo } from './layers/vector.js';
 import { addrasterMonas } from './layers/raster.js';
 import { addAttribution } from './controls/basicControls.js';
@@ -15,8 +16,6 @@ const map = new Map({
   zoom: 2.5,
   attributionControl: false, // Atribution itu citasi, penting banget
 });
-
-addAttribution(map);
 
 const data = {
   "type": "FeatureCollection",
@@ -109,3 +108,7 @@ map.on('load', () => {
   });
 
 })
+
+addAttribution(map);
+map.addControl(new FullscreenControl());
+map.addControl(new GlobeControl());
