@@ -11,7 +11,7 @@ export function addPopupNE(map, event) {
         .setLngLat(event.lngLat)
         .setHTML(`
             <div>
-            <h3>${namaKota}]</h3><p>Latitude: ${event.lngLat.lat.toFixed(2)}<br>Longitude: ${event.lngLat.lng.toFixed(2)}</p>
+            <h3>${namaKota}</h3><p>Latitude: ${event.lngLat.lat.toFixed(2)}<br>Longitude: ${event.lngLat.lng.toFixed(2)}</p>
             </div>
         `)
         .addTo(map);

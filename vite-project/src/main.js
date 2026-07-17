@@ -119,4 +119,3 @@ addAttribution(map);
 map.addControl(new FullscreenControl());
 map.addControl(new GlobeControl());
 map.addControl(new LogoMonasControl(), "top-left");
-addPopupNE(map);
