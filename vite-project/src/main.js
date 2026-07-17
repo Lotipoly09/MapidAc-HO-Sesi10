@@ -3,6 +3,8 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import { addtitikNE, addarIndo } from './layers/vector.js';
 import { addrasterMonas } from './layers/raster.js';
 import { addAttribution } from './controls/basicControls.js';
+import { LogoMonasControl } from './controls/logoCostume.js';
+
 
 const mapElement = document.createElement('div');
 mapElement.id = 'map';
@@ -112,3 +114,4 @@ map.on('load', () => {
 addAttribution(map);
 map.addControl(new FullscreenControl());
 map.addControl(new GlobeControl());
+map.addControl(new LogoMonasControl(), 'top-left');
