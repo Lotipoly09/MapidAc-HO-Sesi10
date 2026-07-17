@@ -1,6 +1,6 @@
 import naturalEarthdata from "../data/titik_populatedplaces.geojson?url";
 import arIndonesia from "../data/arIndo.geojson?url";
-
+import arMalaysia from "../data/arMal.geojson?url";
 
 
 export function addtitikNE(map) {
@@ -28,14 +28,32 @@ export function addarIndo(map) {
       data: arIndonesia,
     });
 
-     map.addLayer({
-    id: 'arIndo-layer',
-    type: 'fill',
-    source: 'arIndo',
-    paint: {
-      'fill-color': 'orange',
-      'fill-opacity': 0.4,
-      'fill-outline-color': 'red',
-    },
-  });
+    map.addLayer({
+      id: 'arIndo-layer',
+      type: 'fill',
+      source: 'arIndo',
+      paint: {
+        'fill-color': 'orange',
+        'fill-opacity': 0.4,
+        'fill-outline-color': 'red',
+      },
+    });
+}
+
+export function addarMal(map) {
+    map.addSource('arMal', {
+      type: 'geojson',
+      data: arMalaysia,
+    });
+
+    map.addLayer({
+      id: 'arMal-layer',
+      type: 'fill',
+      source: 'arMal',
+      paint: {
+        'fill-color': 'red',
+        'fill-opacity': 0.4,
+        'fill-outline-color': 'red',
+      },
+    });
 }
