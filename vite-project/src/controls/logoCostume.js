@@ -1,7 +1,6 @@
 import logoMonas from "../data/logoMonas.png";
 
-export function addLogoMonas(map) {
-    class LogoMonasControl {
+export class LogoMonasControl {
         onAdd(map) {
             this._map = map;
             this._container = document.createElement('div');
@@ -15,4 +14,3 @@ export function addLogoMonas(map) {
             this._map = undefined;
         }
     }
-}
