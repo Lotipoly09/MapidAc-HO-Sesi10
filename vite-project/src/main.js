@@ -1,6 +1,7 @@
 import { Map } from 'maplibre-gl';
 import { addtitikNE, addarIndo } from './layers/vector.js';
 import { addrasterMonas } from './layers/raster.js';
+import { addAttribution } from './controls/basicControls.js';
 
 const mapElement = document.createElement('div');
 mapElement.id = 'map';
@@ -12,7 +13,10 @@ const map = new Map({
   style: 'https://demotiles.maplibre.org/globe.json',
   center: [114, 0.2],
   zoom: 2.5,
+  attributionControl: false, // Atribution itu citasi, penting banget
 });
+
+addAttribution(map);
 
 const data = {
   "type": "FeatureCollection",
