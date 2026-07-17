@@ -18,11 +18,4 @@ export function addPopupNE(map, event) {
 }
 
 
-    // const popup1 = new Popup();
-    //   popup1.on('open', () => {
-    //     console.log('popup was opened');
-    //   });
-    //   popup1.on('close', () => {
-    //     console.log('popup was closed');
-    //   });
- 
+

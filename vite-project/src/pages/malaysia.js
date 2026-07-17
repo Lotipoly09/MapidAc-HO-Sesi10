@@ -51,7 +51,7 @@ map.on('load', () => {
   map.addLayer({
     id: 'titik-malaysia',
     type: 'circle',
-    source: 'malaysia-source',
+    source: 'indonesia-source',
     paint: {
       'circle-radius': 5,
       'circle-color': '#FF0000',
