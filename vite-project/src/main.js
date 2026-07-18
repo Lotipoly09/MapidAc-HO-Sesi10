@@ -4,7 +4,7 @@ import { addtitikNE, addarIndo } from './layers/vector.js';
 import { addrasterMonas } from './layers/raster.js';
 import { addAttribution } from './controls/basicControls.js';
 import { LogoMonasControl } from './controls/logoCostume.js';
-import { addPopupNE } from './controls/popUp.js';
+import { addPopupNE, addPopuparIndo } from './controls/popUp.js';
 import { ambilGeometri } from './engine/toolsArea.js';
 
 
@@ -102,9 +102,12 @@ map.addLayer({
 
 map.on('click', 'natural-earthdata-layer', function (e) {
   addPopupNE(map, e);
+  addPopuparIndo(map, e);
 });
 
+
 map.on("click", "arIndo-layer", function(event){
+  addPopuparIndo(map, event)
   ambilGeometri(event)
 })
 
