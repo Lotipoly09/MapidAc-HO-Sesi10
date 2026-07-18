@@ -40,6 +40,8 @@ export function addarIndo(map) {
     });
 }
 
+// async adalah in
+
 export function addarMal(map) {
     map.addSource('arMal', {
       type: 'geojson',

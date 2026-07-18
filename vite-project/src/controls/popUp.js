@@ -4,7 +4,7 @@ const popup = new Popup();
 
 // popup layer NE
 export function addPopupNE(map, event) {
-    const namaKota =  (event.features[0].properties.NAME);
+    const namaKota = (event.features[0].properties.NAME);
     console.log(namaKota);
 
     return popup

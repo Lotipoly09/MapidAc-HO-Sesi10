@@ -5,11 +5,13 @@ import { addrasterMonas } from './layers/raster.js';
 import { addAttribution } from './controls/basicControls.js';
 import { LogoMonasControl } from './controls/logoCostume.js';
 import { addPopupNE } from './controls/popUp.js';
+import { ambilGeometri } from './engine/toolsArea.js';
+
 
 const mapElement = document.createElement('div');
   mapElement.id = 'map';
-  mapElement.style.height = '300px';
-  document.body.appendChild(mapElement);
+    mapElement.style.height = '300px';
+      document.body.appendChild(mapElement);
 
 const map = new Map({
   container: 'map',
@@ -22,101 +24,102 @@ const map = new Map({
 const data = {
   "type": "FeatureCollection",
   "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "NAMOBJ": "Indonesia"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          112.7415576,
-          -4.2901985
-        ]
-      }
+  {
+    "type": "Feature",
+    "properties": {
+    "NAMOBJ": "Indonesia"
+    },
+    "geometry": {
+    "type": "Point",
+    "coordinates": [
+      112.7415576,
+      -4.2901985
+    ]}
     }
-  ]
-}
+    ]
+  }
 
 const data2 = {
   "type": "FeatureCollection",
   "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "NAMOBJ": "Garis Ibukota Indonesia"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            106.8315391,
-            -6.1873012
-          ],
-          [
-            100.3747002,
-            -0.9275219
-          ],
-          [
-            116.6918698,
-            -0.9807282
-          ]
-        ]
-      }
-    }
+  {
+  "type": "Feature",
+  "properties": {
+  "NAMOBJ": "Garis Ibukota Indonesia"
+  },
+  "geometry": {
+  "type": "LineString",
+  "coordinates": [
+  [
+  106.8315391,
+  -6.1873012
+  ],
+  [
+  100.3747002,
+  -0.9275219
+  ],
+  [
+  116.6918698,
+  -0.9807282
+  ]
+  ]
+  }
+  }
   ]
 }
 
 
 
 map.on('load', () => {
-
   addtitikNE(map);
   addarIndo(map);
   addrasterMonas(map);
 
-  map.addSource('indonesia-source', {
-      type: 'geojson',
-      data: data,
-    });
+map.addSource('indonesia-source', {
+  type: 'geojson',
+  data: data,
+  }
+);
 
 
-  map.addSource('garis-ibukota-source', {
-      type: 'geojson',
-      data: data2,
-    });
+map.addSource('garis-ibukota-source', {
+  type: 'geojson',
+  data: data2,
+  }
+);
 
+map.addLayer({
+  id: 'titik-indonesia',
+  type: 'circle',
+  source: 'indonesia-source',
+  paint: {
+    'circle-radius': 5,
+    'circle-color': '#FF0000',
+    'circle-stroke-width': 2,
+    'circle-stroke-color': '#000000',
+  },
+});
 
-  map.addLayer({
-    id: 'titik-indonesia',
-    type: 'circle',
-    source: 'indonesia-source',
-    paint: {
-      'circle-radius': 5,
-      'circle-color': '#FF0000',
-      'circle-stroke-width': 2,
-      'circle-stroke-color': '#000000',
-    },
-  });
+map.on('click', 'natural-earthdata-layer', function (e) {
+  addPopupNE(map, e);
+});
 
-  map.on('click', 'natural-earthdata-layer', function (e) {
-    addPopupNE(map, e);
-  });
+map.on("click", "arIndo-layer", function(event){
+  ambilGeometri(event)
+})
 
-  map.addLayer({
-    id: 'garis-ibukota',
-    type: 'line',
-    source: 'garis-ibukota-source',
-    paint: {
-      'line-color': '#0000FF',
-      'line-width': 2,
-    },
-  });
-
+map.addLayer({
+  id: 'garis-ibukota',
+  type: 'line',
+  source: 'garis-ibukota-source',
+  paint: {
+    'line-color': '#0000FF',
+    'line-width': 2,
+  },
+});
 })
 
 addAttribution(map);
 map.addControl(new FullscreenControl());
 map.addControl(new GlobeControl());
 map.addControl(new LogoMonasControl(), "top-left");
-addPopupNE(map);
