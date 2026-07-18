@@ -1,6 +1,6 @@
 import { Popup } from 'maplibre-gl';
-import { ambilGeometri } from '../engine/toolsArea.js';
-import { computeArea } from '../engine/toolsArea.js';
+import { ambilLuasArea } from '../engine/toolsArea.js';
+
 
 const popup = new Popup();
 
@@ -23,13 +23,15 @@ export function addPopupNE(map, event) {
 // popup layer arIndo
 const popuparIndo = new Popup();
 
-export function addPopuparIndo(map, event) {
-    const luasArIndo = ambilGeometri(event)
+export async function addPopuparIndo(map, event) {
+    const luasArIndo = await ambilLuasArea(event)
+    console.log("data:", luasArIndo);
+
     return popuparIndo
         .setLngLat(event.lngLat)
         .setHTML(`
             <div>
-            luasArIndo
+            <p>${luasArIndo.area_ha.toLocaleString()}</P>
             </div>
         `)
         .addTo(map);
