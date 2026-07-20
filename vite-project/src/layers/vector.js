@@ -40,7 +40,6 @@ export function addarIndo(map) {
     });
 }
 
-// async adalah in
 
 export function addarMal(map) {
     map.addSource('arMal', {
@@ -56,6 +55,40 @@ export function addarMal(map) {
         'fill-color': 'red',
         'fill-opacity': 0.4,
         'fill-outline-color': 'red',
+      },
+    });
+}
+
+export function bikinLayerBuffer(map, data) {
+    const sourceId = 'buffer-source';
+    const layerId = 'buffer-layer';
+
+    if (!data) {
+        console.warn('No buffer geometry received.');
+        return;
+    }
+
+    if (map.getLayer(layerId)) {
+        map.removeLayer(layerId);
+    }
+
+    if (map.getSource(sourceId)) {
+        map.removeSource(sourceId);
+    }
+
+    map.addSource(sourceId, {
+      type: 'geojson',
+      data: data,
+    });
+
+    map.addLayer({
+      id: layerId,
+      type: 'fill',
+      source: sourceId,
+      paint: {
+        'fill-color': 'red',
+        'fill-opacity': 0.35,
+        'fill-outline-color': 'black',
       },
     });
 }

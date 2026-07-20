@@ -1,6 +1,6 @@
 import { Popup } from 'maplibre-gl';
 import { ambilLuasArea } from '../engine/toolsArea.js';
-
+import { storeBufferGeometry } from '../engine/toolsBuffer.js';
 
 const popup = new Popup();
 

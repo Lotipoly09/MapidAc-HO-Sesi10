@@ -6,7 +6,7 @@ import { addAttribution } from './controls/basicControls.js';
 import { LogoMonasControl } from './controls/logoCostume.js';
 import { addPopupNE, addPopuparIndo } from './controls/popUp.js';
 import { ambilLuasArea } from './engine/toolsArea.js';
-
+import { storeBufferGeometry } from './engine/toolsBuffer.js';
 
 const mapElement = document.createElement('div');
   mapElement.id = 'map';
@@ -102,6 +102,7 @@ map.addLayer({
 
 map.on('click', 'natural-earthdata-layer', function (e) {
   addPopupNE(map, e);
+  storeBufferGeometry(map, e)
 });
 
 
