@@ -1,0 +1,13 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "NAMOBJ": "Indonesia" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.7415576, -4.2901985]
+      }
+    }
+  ]
+}

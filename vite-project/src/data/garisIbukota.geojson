@@ -1,0 +1,17 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "NAMOBJ": "Garis Ibukota Indonesia" },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.8315391, -6.1873012],
+          [100.3747002, -0.9275219],
+          [116.6918698, -0.9807282]
+        ]
+      }
+    }
+  ]
+}
